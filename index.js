@@ -1,66 +1,59 @@
-function calculate() {
-    var age = document.getElementById('age').value;
-    var weight = document.getElementById('weight').value;
-    var height = document.getElementById('height').value;
-    var male = document.getElementById('m').checked;
-    var female = document.getElementById('f').checked;
+function update() {
+    let title = document.getElementById('title').value;
+    let desc = document.getElementById('description').value;
 
-    if (age === "" || weight === "" || height === "") {
-        alert("Please add age, weight, and height.");
+    if (title === "" || desc === "") {
+        alert("Please add both title and description.");
         return;
     }
 
-    age = parseInt(age);
-    weight = parseInt(weight);
-    height = parseInt(height);
-
-    var bmi = weight / ((height / 100) * (height / 100));
-    var result = "";
-
-    if (bmi < 18.5) {
-        result = "You are underweight";
-    } else if (bmi >= 18.5 && bmi < 25) {
-        result = "You are healthy";
-    } else if (bmi >= 25 && bmi < 30) {
-        result = "You are overweight";
+    let itemsJsonArray;
+    if (localStorage.getItem('itemsJson') == null) {
+        itemsJsonArray = [];
     } else {
-        result = "You are obese";
+        itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
     }
 
-    var pbmi = document.getElementById('col5');
-    pbmi.innerHTML = "Your BMI is: " + bmi.toFixed(2);
-
-    var pbmi2 = document.getElementById('col6');
-    pbmi2.innerHTML = result;
-
-    updateChart(bmi);
+    itemsJsonArray.push([title, desc]);
+    localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray));
+    populateList();
 }
 
-function updateChart(bmi) {
-    var ctx = document.getElementById('bmiChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Underweight', 'Healthy', 'Overweight', 'Obese'],
-            datasets: [{
-                label: 'BMI Category',
-                data: [18.5, 24.9, 29.9, 30],
-                backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c']
-            }, {
-                label: 'Your BMI',
-                data: [bmi],
-                backgroundColor: ['#8e44ad']
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 40
-                }
-            }
-        }
+function populateList() {
+    let itemsJsonArray;
+    if (localStorage.getItem('itemsJson') == null) {
+        itemsJsonArray = [];
+    } else {
+        itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
+    }
+
+    let tableBody = document.getElementById('tableBody');
+    let str = "";
+    itemsJsonArray.forEach((element, index) => {
+        str += `
+            <tr>
+                <th scope="row">${index + 1}</th>
+                <td>${element[0]}</td>
+                <td>${element[1]}</td>
+                <td><button class="btn btn-sm btn-primary" onclick="deleteItem(${index})">Delete</button></td>
+            </tr>`;
     });
+    tableBody.innerHTML = str;
 }
 
-document.getElementById('btn').addEventListener("click", calculate);
+function deleteItem(itemIndex) {
+    let itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
+    itemsJsonArray.splice(itemIndex, 1);
+    localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray));
+    populateList();
+}
+
+function clearStorage() {
+    if (confirm("Do you really want to clear the list?")) {
+        localStorage.clear();
+        populateList();
+    }
+}
+
+document.getElementById('add').addEventListener("click", update);
+populateList();
