@@ -1,32 +1,26 @@
-# CognoRise-Infotech--Task-1
+# CognoRise-Infotech--Task-3
 
-Enhanced BMI Calculator
-The BMI Calculator is a web application designed to help users calculate their Body Mass Index (BMI) and understand their weight category based on the BMI value. The application provides a user-friendly interface where users can input their age, gender, height, and weight. Once the user inputs the required details and clicks the "Calculate" button, the application calculates the BMI and displays the result along with a weight category. Additionally, a dynamic chart visualizes the user's BMI in comparison to standard BMI categories, providing a comprehensive understanding of their health status.
+TODO List
+This project is a simple TODO List web application that allows users to add, view, and delete items from a list. It utilizes HTML, CSS, and JavaScript to create a responsive and user-friendly interface. Here’s a brief overview of the project's components:
 
-Technologies Used
-HTML: The structure of the BMI Calculator is built using HTML. It defines the layout of the input fields, labels, buttons, and other elements on the webpage.
-CSS: The styling of the application is done using CSS, which ensures the page is visually appealing and responsive. The CSS handles the layout, colors, fonts, and overall design of the calculator.
-JavaScript: The functionality of the BMI Calculator is powered by JavaScript. It performs the BMI calculation based on user input, updates the webpage with the results, and renders the chart using the Chart.js library.
+HTML
+The index.html file defines the structure of the web application. It includes:
 
-Features
-User Input Fields: Allows users to input their age, gender, height (in cm), and weight (in kg).
-BMI Calculation: Calculates the BMI using the formula: BMI = weight / (height/100 * height/100).
-Result Display: Displays the calculated BMI value and the corresponding weight category (Underweight, Healthy, Overweight, Obese).
-Dynamic Chart: Visualizes the user's BMI in comparison to standard BMI categories, providing a clear visual representation of the user's health status.
-Responsive Design: Ensures the application is accessible and functional on various devices, including desktops, tablets, and smartphones.
-This project showcases the integration of HTML, CSS, and JavaScript to create a useful and interactive web application that helps users monitor their health. The use of Chart.js enhances the user experience by providing a visual context to the BMI values.
+Header: Contains the navigation bar with links to Home, About, and Contact, along with a search input field and a search button.
+Main Content: Includes a form to add items to the TODO list, with fields for the title and description of each item, and buttons to add items and clear the list.
+Table: Displays the list of items added by the user, with each item having a title, description, and a delete button.
+Footer: Displays a simple footer with copyright information.
+CSS
+The style.css file provides styling for the HTML elements, ensuring a consistent and visually appealing layout. It includes:
 
-File Structure
-index.html: The main HTML file containing the structure of the application.
-styles.css: The CSS file for styling the application.
-script.js: The JavaScript file for handling BMI calculations and chart updates.
-Getting Started
-Clone the repository or download the source files.
-Open index.html in a web browser to view and interact with the BMI calculator.
-Usage
-Select your gender.
-Enter your age.
-Enter your height in centimeters.
-Enter your weight in kilograms.
-Click the "Calculate" button.
-View the BMI result, additional health details, and the chart.
+Global Styles: Resets default margins and paddings, and sets box-sizing.
+Layout: Defines the overall structure of the page using flexbox, with a header, main content area, and footer.
+Form and Table Styles: Styles the form controls and table elements to ensure they are visually appealing and easy to use.
+JavaScript
+The index.js file contains the logic for managing the TODO list. It includes:
+
+Add Item: Adds a new item to the list and stores it in the browser's local storage.
+Populate List: Retrieves items from local storage and displays them in the table.
+Delete Item: Removes an item from the list and updates local storage.
+Clear Storage: Clears all items from the list and local storage.
+This project demonstrates basic CRUD (Create, Read, Update, Delete) operations using local storage for data persistence, and showcases the use of modern web development technologies to create a functional and interactive application.
